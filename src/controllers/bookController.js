@@ -1,10 +1,13 @@
 export default (Book) => {
   const post = (req, res) => {
-    const book = new Book(req.body);
 
-    book.save();
-
-    res.status(201).send(book);
+    if (!req.body.title) {
+      res.status(400).send('Title is required');
+    } else {
+      const book = new Book(req.body);
+      book.save();
+      res.status(201).send(book);
+    }
   }
 
   const get = (req, res) => {
@@ -18,7 +21,6 @@ export default (Book) => {
       .then((books) => res.json(books))
       .catch((e) => res.status(500).send(e));
   }
-
 
   return {
     post,
