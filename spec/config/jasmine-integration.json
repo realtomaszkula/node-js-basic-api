@@ -1,5 +1,8 @@
 {
-  "spec_dir": "/e2e",
+  "spec_dir": "e2e",
+  "spec_files": [
+    "**/*.spec.js"
+  ],
   "helpers": [
     "spec/helpers/**/*.js"
   ]

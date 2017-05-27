@@ -3,10 +3,18 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import bookRouter from './routes/bookRoutes';
 import Book from './models/bookModel';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 mongoose.Promise = global.Promise;
 
-const db = mongoose.connect('mongodb://localhost/bookAPI');
+const dbHost = process.env.NODE_ENV === 'TEST'
+  ? process.env.DB_HOST_TEST : process.env.DB_HOST;
+
+  console.log(dbHost);
+
+const db = mongoose.connect(dbHost);
 
 const app = express();
 

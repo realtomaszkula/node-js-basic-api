@@ -9,8 +9,8 @@
     "seed": "npm run generateBooksSchema && npm run seedBooks",
     "prestart": "npm run seed",
     "start": "nodemon -w src --exec babel-node src/app.js",
-    "test": "nodemon -w src --exec babel-node spec/run-unit.js",
-    "test:integration": "nodemon -w src -w e2e --exec babel-node spec/run-integration.js"
+    "test": "NODE_ENV=TEST nodemon -w src --exec babel-node spec/run-unit.js",
+    "test:integration": "NODE_ENV=TEST nodemon -w src -w e2e --exec babel-node spec/run-integration.js"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +24,8 @@
     "jasmine": "^2.6.0",
     "jasmine-console-reporter": "^1.2.7",
     "json-schema-faker": "^0.5.0-rc3",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
