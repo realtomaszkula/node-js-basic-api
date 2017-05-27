@@ -1,6 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import bookRouter from './routes/bookRoutes';
 import Book from './models/bookModel';
+
+mongoose.Promise = global.Promise;
 
 const db = mongoose.connect('mongodb://localhost/bookAPI');
 
@@ -8,30 +12,10 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-const bookRouter = express.Router();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-bookRouter.route('/books')
-  .get((req, res) => {
-
-    let query = {};
-    if (req.query.genre) {
-      query.genre = req.query.genre;
-    }
-
-    Book.find(query)
-      .then((books) => res.json(books))
-      .catch((e) => res.status(500).send(e));
-  });
-
-bookRouter.route('/books/:id')
-  .get((req, res) => {
-
-    Book.findById(req.params.id)
-      .then((books) => res.json(books))
-      .catch((e) => res.status(500).send(e));
-  });
-
-app.use('/api', bookRouter);
+app.use('/api/books/', bookRouter(Book));
 
 app.get('/', (req, res) => {
   res.send('welcome to my api!');
