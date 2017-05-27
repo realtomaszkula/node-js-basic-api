@@ -25,7 +25,7 @@ describe('BookController', () => {
 
       const controller = getBookController(book);
 
-      controller.post(req, res);
+      controller.create(req, res);
 
       expect(res.status).toHaveBeenCalledWith(400)
       expect(res.send).toHaveBeenCalledWith('Title is required');
