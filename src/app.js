@@ -11,8 +11,7 @@ mongoose.Promise = global.Promise;
 
 const dbHost = process.env.NODE_ENV === 'TEST'
   ? process.env.DB_HOST_TEST : process.env.DB_HOST;
-
-  console.log(dbHost);
+console.log(`Connected to ${dbHost}`);
 
 const db = mongoose.connect(dbHost);
 
