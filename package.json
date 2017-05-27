@@ -9,7 +9,8 @@
     "seed": "npm run generateBooksSchema && npm run seedBooks",
     "prestart": "npm run seed",
     "start": "nodemon -w src --exec babel-node src/app.js",
-    "test": "nodemon -w src --exec babel-node spec/run.js"
+    "test": "nodemon -w src --exec babel-node spec/run-unit.js",
+    "test:integration": "nodemon -w src -w e2e --exec babel-node spec/run-integration.js"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "chalk": "^1.1.3",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "mongoose": "^4.10.2",
     "ramda": "^0.24.0"

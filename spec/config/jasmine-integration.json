@@ -1,0 +1,6 @@
+{
+  "spec_dir": "/e2e",
+  "helpers": [
+    "spec/helpers/**/*.js"
+  ]
+}
