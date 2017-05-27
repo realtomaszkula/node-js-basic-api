@@ -1,29 +1,13 @@
 import express from 'express';
-import R from 'ramda';
+import getBookController from '../controllers/bookController';
 
 export default (Book) => {
   const bookRouter = express.Router();
+  const bookController = getBookController(Book);
 
   bookRouter.route('/')
-    .post((req, res) => {
-      const book = new Book(req.body);
-
-      book.save();
-
-      res.status(201).send(book);
-    })
-    .get((req, res) => {
-
-      let query = {};
-      if (req.query.genre) {
-        query.genre = req.query.genre;
-      }
-
-      Book.find(query)
-        .then((books) => res.json(books))
-        .catch((e) => res.status(500).send(e));
-    });
-
+    .post(bookController.post)
+    .get(bookController.get);
 
   bookRouter.use('/:id', (req, res, next) => {
     Book.findById(req.params.id)
