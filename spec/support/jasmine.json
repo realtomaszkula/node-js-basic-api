@@ -1,0 +1,11 @@
+{
+  "spec_dir": "/src",
+  "spec_files": [
+    "controllers/**/*[sS]pec.js",
+    "routes/**/*[sS]pec.js",
+    "models/**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "spec/helpers/**/*.js"
+  ]
+}
