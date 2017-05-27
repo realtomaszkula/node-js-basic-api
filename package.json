@@ -8,7 +8,8 @@
     "seedBooks": "mongoimport --db bookAPI --collection books --drop --file scripts/seeds/booksSeed.json --jsonArray",
     "seed": "npm run generateBooksSchema && npm run seedBooks",
     "prestart": "npm run seed",
-    "start": "nodemon app.js --exec babel-node"
+    "start": "nodemon -w src --exec babel-node src/app.js",
+    "test": "nodemon -w src --exec babel-node spec/run.js"
   },
   "keywords": [],
   "author": "",

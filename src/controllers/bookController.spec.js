@@ -8,7 +8,6 @@ describe('BookController', () => {
     it('should fail for book witout title', () => {
       expect(false).toBeFalsy();
     });
-
   });
 
 });
