@@ -12,7 +12,21 @@ const bookRouter = express.Router();
 
 bookRouter.route('/books')
   .get((req, res) => {
-    Book.find()
+
+    let query = {};
+    if (req.query.genre) {
+      query.genre = req.query.genre;
+    }
+
+    Book.find(query)
+      .then((books) => res.json(books))
+      .catch((e) => res.status(500).send(e));
+  });
+
+bookRouter.route('/books/:id')
+  .get((req, res) => {
+
+    Book.findById(req.params.id)
       .then((books) => res.json(books))
       .catch((e) => res.status(500).send(e));
   });
